@@ -1,0 +1,143 @@
+/* ---- L'OUVERTURE ---------------------------------------------------------------
+   170 % d'ecran de defilement, pendant lesquels le contenu reste colle en bas
+   de l'ecran, au-dessus du trou noir. Un degrade noir monte du bas pour que le
+   texte reste lisible sur le disque lumineux. */
+
+/* La section couvre tout l'ecran, au-dessus de la barre (elle doit passer
+   devant le trou noir, qui passe lui-meme devant la barre). Elle laisse donc
+   passer les clics : seul son contenu les recoit. Sans cela, les liens de la
+   barre seraient inaccessibles a la souris tant que l'ouverture est a l'ecran
+   (defaut du prototype). */
+.ouverture {
+  pointer-events: none;
+}
+
+.ouverture__colle {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 0 var(--marge) max(var(--e-18), calc(var(--e-10) + env(safe-area-inset-bottom, 0px)));
+}
+
+.ouverture__colle::before {
+  content: '';
+  position: absolute;
+  inset: auto 0 0 0;
+  z-index: -1;
+  height: 55%;
+  background: linear-gradient(0deg, color-mix(in srgb, var(--fond) 92%, transparent) 25%, transparent);
+  pointer-events: none;
+  transition: opacity var(--d-moyen) var(--courbe-entree);
+}
+
+/* Sur un telephone, le texte monte plus haut dans l'ecran (il passe sur le
+   disque lumineux, le sur-titre y devenait illisible) : le voile monte avec lui. */
+@media (max-width: 720px) {
+  .ouverture__colle::before {
+    height: 72%;
+  }
+  /* Le sur-titre passe encore sur le bord du disque : un halo sombre le detache. */
+  .ouverture .surtitre {
+    text-shadow:
+      0 0 var(--e-2) var(--fond),
+      0 0 var(--e-1) var(--fond);
+  }
+}
+
+/* Quand la barre est descendue, le texte de l'ouverture est parti : le voile
+   ne sert plus. Il s'efface, sinon il assombrirait la barre au moment ou le
+   bas de l'ouverture passe dessous (defaut du prototype). */
+.barre.visible ~ main .ouverture__colle::before {
+  opacity: 0;
+}
+
+.ouverture__contenu,
+.ouverture__indice {
+  pointer-events: auto;
+}
+
+.ouverture__contenu {
+  max-width: var(--largeur-ouverture);
+  display: flex;
+  flex-direction: column;
+  gap: var(--e-5-5);
+}
+
+.ouverture h1 {
+  font-size: var(--t-hero);
+  line-height: 0.92;
+  letter-spacing: var(--resserre-fort);
+}
+
+.ouverture p {
+  margin: 0;
+  max-width: 34em;
+  color: var(--texte-doux);
+  font-size: var(--t-chapo);
+}
+
+/* Les elements qui apparaissent a la fin de l'intro, chacun avec son retard. */
+[data-intro] {
+  opacity: 0;
+  transform: translateY(var(--e-6));
+  transition:
+    opacity var(--d-long) var(--courbe-entree),
+    transform var(--d-long) var(--courbe-entree);
+  transition-delay: var(--d, 0s);
+}
+body.intro-finie [data-intro] {
+  opacity: 1;
+  transform: none;
+}
+
+/* L'indice « defiler » : un trait qui se deroule vers le bas, en boucle. */
+.ouverture__indice {
+  position: absolute;
+  right: var(--marge);
+  bottom: var(--e-20);
+  display: flex;
+  align-items: center;
+  gap: var(--e-3);
+  font-family: var(--mono);
+  font-size: var(--t-mono-xs);
+  letter-spacing: var(--ecarte);
+  color: var(--texte-faible);
+}
+.ouverture__indice span:last-child {
+  width: 1px;
+  height: var(--e-11);
+  background: linear-gradient(180deg, var(--violet-clair), transparent);
+  transform-origin: top;
+  /* Un cycle d'un pas tres long plus un pas long (2,3 s ; 2,2 s dans le prototype). */
+  animation: indice calc(var(--d-tres-long) + var(--d-long)) var(--courbe-trans) infinite;
+}
+@keyframes indice {
+  0% {
+    transform: scaleY(0);
+  }
+  50% {
+    transform: scaleY(1);
+  }
+  100% {
+    transform: scaleY(1);
+    opacity: 0;
+  }
+}
+
+/* Sur un telephone, l'indice tomberait sur le bouton « Me contacter » (defaut
+   du prototype, mesure a 360 px) : il est retire, il n'est que decoratif. */
+@media (max-width: 720px) {
+  .ouverture__indice {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  [data-intro] {
+    opacity: 1;
+    transform: none;
+  }
+}

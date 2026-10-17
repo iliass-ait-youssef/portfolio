@@ -1,0 +1,85 @@
+/* ---- LE SOCLE COMMUN DES SECTIONS --------------------------------------------
+   Ce que les sections partagent : le fond de lecture, l'interieur centre,
+   l'en-tete, et les hauteurs des sections « collantes » qu'on traverse en
+   defilant pendant que leur contenu reste a l'ecran. */
+
+.section {
+  position: relative;
+  z-index: var(--plan-section);
+  background: var(--fond-section);
+  padding: var(--section-pad) var(--marge);
+}
+
+.interieur {
+  max-width: var(--largeur-max);
+  margin: 0 auto;
+}
+
+.entete {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--e-5);
+  margin-bottom: var(--e-9);
+}
+
+.entete h2 {
+  font-size: var(--t-section);
+}
+
+/* Les hauteurs des sections collantes : c'est la longueur du defilement
+   pendant laquelle leur moteur joue. Reprises du prototype. */
+.ouverture {
+  position: relative;
+  z-index: var(--plan-ouverture);
+  height: 170vh;
+}
+
+.interlude {
+  position: relative;
+  z-index: var(--plan-section);
+  background: var(--fond);
+}
+
+.saut {
+  height: 230vh;
+}
+
+.carte-ciel {
+  position: relative;
+  z-index: var(--plan-section);
+  height: 330vh;
+  background: var(--fond-carte);
+}
+
+.voyage {
+  position: relative;
+  z-index: var(--plan-section);
+  height: 880vh;
+  background: var(--fond);
+}
+
+/* Une section encore vide (pas encore construite) ne prend aucune place :
+   sinon on traverserait des ecrans entiers de noir. La regle s'eteint d'elle-
+   meme des que la section recoit son contenu. */
+main > section:empty {
+  height: 0;
+  padding: 0;
+}
+
+/* Le contenu d'une section collante reste fixe a l'ecran pendant qu'on la
+   traverse. */
+.colle {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  overflow: hidden;
+}
+
+/* Sans animation, la constellation est montree d'un coup, entierement formee :
+   plus de longueur de defilement a lui donner, elle tient sur un ecran. */
+@media (prefers-reduced-motion: reduce) {
+  .carte-ciel {
+    height: auto;
+  }
+}

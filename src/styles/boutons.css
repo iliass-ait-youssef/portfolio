@@ -1,0 +1,55 @@
+/* ---- LES BOUTONS ---------------------------------------------------------------
+   Deux formes, en pilule : plein (violet, l'action principale) et creux (un
+   contour). Au survol du bouton plein, un fond blanc monte depuis le bas. */
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--e-3);
+}
+
+.bouton {
+  position: relative;
+  min-height: var(--bouton);
+  padding: 0 var(--e-6-5);
+  display: inline-flex;
+  align-items: center;
+  border-radius: var(--rayon-pilule);
+  font-weight: 600;
+  font-size: var(--t-ui);
+  overflow: hidden;
+  transition: transform var(--d-moyen) var(--courbe-entree);
+}
+
+.bouton-plein {
+  background: var(--violet);
+  color: var(--inverse);
+}
+.bouton-plein::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: var(--blanc);
+  transform: translateY(101%);
+  transition: transform var(--d-moyen) var(--courbe-entree);
+}
+.bouton-plein:hover::before {
+  transform: none;
+}
+.bouton-plein span {
+  position: relative;
+}
+.bouton-plein:hover {
+  color: var(--inverse);
+}
+
+.bouton-creux {
+  border: 1px solid var(--trait-clair);
+  color: var(--texte);
+  font-weight: 500;
+}
+.bouton-creux:hover {
+  border-color: var(--violet-clair);
+  color: var(--texte);
+}

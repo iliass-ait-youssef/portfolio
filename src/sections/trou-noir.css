@@ -1,0 +1,83 @@
+/* ---- LE TROU NOIR --------------------------------------------------------------
+   Un canvas fixe, plein ecran, transparent, qui ne capte aucun clic. Le shader
+   n'y dessine que le rectangle du trou noir : le reste laisse voir la page.
+
+   Pendant l'intro, il est invisible et un peu recule ; quand le rideau se
+   leve, il s'approche et s'allume (le prototype etirait l'approche sur 1,8 s,
+   ici elle suit le pas « tres long » du systeme de mouvement). */
+
+.trou {
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: var(--plan-trou);
+  display: block;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  opacity: 0;
+  transform: scale(0.55);
+  transition:
+    opacity var(--d-tres-long) var(--courbe-entree),
+    transform var(--d-tres-long) var(--courbe-entree);
+}
+
+body.intro-sortie .trou {
+  opacity: 1;
+  transform: none;
+}
+
+/* Revenu en plein ecran derriere le contact, il passe SOUS les sections : le
+   contact est transparent et le laisse voir, mais la barre reste devant le
+   contact quand il defile dessous. (Dans le prototype, le contact passait
+   devant la barre.) Le logo, lui, n'est plus dessine par le canvas a ce
+   moment-la : il garde sa silhouette en CSS. */
+body.logo-plonge .trou {
+  z-index: var(--plan-trou-fond);
+}
+
+/* ---- LE REPLI SANS WEBGL --------------------------------------------------------
+   Sans WebGL, le trou noir est suggere en CSS : un disque noir, un anneau
+   lumineux, et l'etalement du disque d'accretion de part et d'autre. Pas de
+   rotation, pas de lentille : une image fixe, de memes couleurs (jetons
+   `--trou-disque-*`). Il s'efface avec l'ouverture et revient derriere le
+   contact, comme le vrai (l'opacite est posee par TrouNoir.tsx). */
+
+.trou-repli {
+  position: fixed;
+  inset: 0;
+  z-index: var(--plan-trou);
+  pointer-events: none;
+  opacity: 0;
+  background:
+    radial-gradient(circle at 50% var(--repli-hauteur), var(--fond) var(--repli-rayon), transparent calc(var(--repli-rayon) + 0.4vmin)),
+    radial-gradient(
+      circle at 50% var(--repli-hauteur),
+      transparent var(--repli-rayon),
+      var(--trou-disque-chaud) calc(var(--repli-rayon) + 0.5vmin),
+      color-mix(in srgb, var(--trou-disque-tiede) 70%, transparent) calc(var(--repli-rayon) + 2vmin),
+      transparent var(--repli-halo)
+    ),
+    radial-gradient(
+      ellipse 70% 12% at 50% var(--repli-hauteur),
+      color-mix(in srgb, var(--trou-disque-tiede) 75%, transparent),
+      color-mix(in srgb, var(--trou-disque-froid) 55%, transparent) 55%,
+      transparent 100%
+    );
+  transition: opacity var(--d-tres-long) var(--courbe-entree);
+}
+
+body.intro-sortie .trou-repli {
+  opacity: var(--repli-opacite, 1);
+}
+
+body.logo-plonge .trou-repli {
+  z-index: var(--plan-trou-fond);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .trou {
+    opacity: 1;
+    transform: none;
+  }
+}

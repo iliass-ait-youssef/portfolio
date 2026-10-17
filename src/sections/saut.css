@@ -1,0 +1,49 @@
+/* ---- LE SAUT EN VITESSE LUMIERE ----------------------------------------------
+   Le canvas occupe tout l'ecran collant ; le texte et le flash sont poses
+   dessus. Sous reduced-motion, la section n'est pas affichee. */
+
+.interlude__canvas {
+  position: absolute;
+  inset: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.saut__texte {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--e-4-5);
+  perspective: var(--perspective-saut);
+  pointer-events: none;
+}
+
+.saut__mot {
+  font-family: var(--titre);
+  font-weight: 700;
+  font-size: var(--t-saut);
+  letter-spacing: var(--resserre-fort);
+  line-height: 0.9;
+  color: var(--blanc);
+  opacity: 0;
+  text-shadow: 0 0 60px var(--saut-ombre-mot);
+  will-change: transform, opacity;
+}
+
+.saut__eclair {
+  position: absolute;
+  inset: 0;
+  background: var(--blanc);
+  opacity: 0;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .saut {
+    display: none;
+  }
+}

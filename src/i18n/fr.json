@@ -1,0 +1,310 @@
+{
+  "meta": {
+    "titre": "Iliass Ait Youssef — Du câble au code",
+    "description": "Développeur d'applications, BTS SIO SLAM à Bourg-en-Bresse. Trois ans de matériel et de réseau avant d'écrire du code métier : projets, compétences par couche, parcours."
+  },
+  "commun": {
+    "sautContenu": "Aller au contenu",
+    "langue": "Langue du site",
+    "fr": "FR",
+    "en": "EN",
+    "frLong": "Français",
+    "enLong": "English"
+  },
+  "intro": {
+    "nom": "ILIASS AIT YOUSSEF",
+    "devise": "DU CÂBLE AU CODE",
+    "calcul": "CALCUL DE L'HORIZON",
+    "passer": "CLIQUE POUR PASSER"
+  },
+  "barre": {
+    "logo": "Retour en haut de la page",
+    "nom": "Ait Youssef",
+    "navigation": "Navigation principale",
+    "projets": "Projets",
+    "competences": "Compétences",
+    "parcours": "Parcours",
+    "contact": "Contact"
+  },
+  "ouverture": {
+    "aria": "Présentation",
+    "surtitre": "DÉVELOPPEUR D'APPLICATIONS, BTS SIO SLAM",
+    "titre1": "Du câble",
+    "titre2": "au code.",
+    "chapo": "Trois ans de matériel et de réseau avant d'écrire du code métier. Je sais ce qu'il y a sous une application.",
+    "voirProjets": "Voir les projets",
+    "contacter": "Me contacter",
+    "defiler": "DÉFILER"
+  },
+  "apropos": {
+    "aria": "À propos",
+    "declaration": "Je développe des applications, et je sais ce qu'il y a dessous :",
+    "declarationFin": "le poste, le serveur, le réseau, la base.",
+    "chiffres": [
+      {
+        "valeur": 3,
+        "unite": " ans",
+        "legende": "de matériel et de réseau, en Bac Pro"
+      },
+      {
+        "valeur": 5,
+        "unite": " stages",
+        "legende": "en entreprise, du terrain au code"
+      },
+      {
+        "valeur": 5326,
+        "unite": "",
+        "legende": "lignes écrites seul pour Zmobile01"
+      }
+    ]
+  },
+  "bandeau": {
+    "rang1": [
+      "PHP",
+      "C#",
+      "JAVASCRIPT",
+      "THREE.JS",
+      "SQL",
+      "WEBGL"
+    ],
+    "rang2": [
+      "CISCO",
+      "PROXMOX",
+      "VLAN",
+      "DNS",
+      "APACHE",
+      "ACTIVE DIRECTORY"
+    ]
+  },
+  "saut": {
+    "etiquette": "SAUT VERS LES PROJETS",
+    "mot": "PROJETS"
+  },
+  "projets": {
+    "aria": "Projets",
+    "titre": "Projets",
+    "surtitre": "ÉTUDES DE CAS",
+    "lire": "Lire",
+    "cartes": [
+      {
+        "code": "STAGE DE BTS",
+        "etat": "LIVRÉ",
+        "titre": "Zmobile01",
+        "resume": "Une boutique sans service informatique, un ancien site en erreur. J'ai proposé le projet au gérant, puis livré seul un site vitrine et un back-office sécurisé qu'il administre lui-même.",
+        "metriques": [
+          {
+            "valeur": "8",
+            "compteur": true,
+            "legende": "lots livrés"
+          },
+          {
+            "valeur": "15/15",
+            "compteur": false,
+            "legende": "en recette"
+          },
+          {
+            "valeur": "7",
+            "compteur": true,
+            "legende": "solutions écartées"
+          }
+        ],
+        "etiquettes": [
+          "PHP 8",
+          "JavaScript",
+          "Three.js",
+          "Apache",
+          "CSRF",
+          "RGPD"
+        ]
+      },
+      {
+        "code": "PROJET PERSONNEL",
+        "etat": "EN COURS",
+        "titre": "Ce portfolio",
+        "resume": "Le trou noir de l'ouverture est calculé en temps réel : chaque pixel lance un rayon de lumière dont la trajectoire est courbée par la gravité, comme pour le film Interstellar.",
+        "metriques": [
+          {
+            "valeur": "2",
+            "compteur": false,
+            "legende": "langues"
+          },
+          {
+            "valeur": "60",
+            "compteur": false,
+            "legende": "images par seconde visées"
+          }
+        ],
+        "etiquettes": [
+          "Three.js",
+          "WebGL",
+          "GLSL",
+          "TypeScript",
+          "Accessibilité"
+        ]
+      }
+    ],
+    "aVenir": [
+      {
+        "titre": "C# et POO",
+        "texte": "Étude de cas à venir"
+      },
+      {
+        "titre": "Base de données",
+        "texte": "Étude de cas à venir"
+      },
+      {
+        "titre": "Infrastructure",
+        "texte": "Étude de cas à venir"
+      }
+    ]
+  },
+  "constellation": {
+    "aria": "Compétences : la constellation",
+    "canvas": "Constellation des compétences : les outils sont des étoiles regroupées par couche, du silicium à l'interface, et les projets relient les couches",
+    "surtitre": "COMPÉTENCES",
+    "titreDebut": "La carte",
+    "texteDebut": "Chaque étoile est un outil, chaque constellation une couche technique. Défile pour la voir se dessiner, du câble jusqu'au code.",
+    "couche": "Couche",
+    "outilsLabel": "Outils",
+    "titreProjets": "Les projets relient les couches",
+    "texteProjets": "Les étoiles brillantes sont mes formations et mes projets. Leurs liens montrent quels outils j'y ai vraiment utilisés.",
+    "titreExplore": "Explore",
+    "texteExplore": "Survole une étoile pour voir à quoi elle est reliée.",
+    "etatExplore": "Du silicium à l’interface, en cinq couches.",
+    "couches": [
+      {
+        "nom": "Silicium",
+        "texte": "Le matériel : maintenance d'équipements Cisco, déploiement de postes, fibre optique sur le terrain."
+      },
+      {
+        "nom": "Réseau",
+        "texte": "Les services qui relient les postes : annuaire, adressage, noms, réseaux virtuels, virtualisation, serveur web."
+      },
+      {
+        "nom": "Données",
+        "texte": "Le modèle, les requêtes, la normalisation."
+      },
+      {
+        "nom": "Application",
+        "texte": "La logique métier, et sa sécurité."
+      },
+      {
+        "nom": "Interface",
+        "texte": "Ce que l'utilisateur voit et touche."
+      }
+    ],
+    "outils": {
+      "cisco": "Cisco",
+      "postes": "Postes",
+      "fibre": "Fibre optique",
+      "ad": "AD",
+      "dhcp": "DHCP",
+      "dns": "DNS",
+      "vlan": "VLAN",
+      "proxmox": "Proxmox",
+      "apache": "Apache",
+      "sql": "SQL",
+      "mcd": "MCD",
+      "php": "PHP",
+      "csharp": "C#",
+      "javascript": "JavaScript",
+      "threejs": "Three.js",
+      "html": "HTML",
+      "css": "CSS",
+      "webgl": "WebGL",
+      "accessibilite": "Accessibilité"
+    },
+    "projets": {
+      "bacpro": "Bac Pro SN",
+      "bts": "BTS SIO",
+      "zmobile": "Zmobile01",
+      "portfolio": "Ce portfolio"
+    }
+  },
+  "voyage": {
+    "aria": "Parcours",
+    "surtitre": "PARCOURS · 2022 → AUJOURD'HUI",
+    "titre": "Le parcours",
+    "texte": "Chaque étoile est une étape. On part du bord de la galaxie et on avance vers son cœur.",
+    "voirDetail": "Voir le détail",
+    "details": "Détails",
+    "acces": "Lire le parcours étape par étape",
+    "liste": "Les étapes du parcours",
+    "etape": "ÉTAPE",
+    "jalons": [
+      {
+        "quand": "2022",
+        "titre": "Bac Pro Systèmes numériques",
+        "texte": "Option RISC, lycée Saint-Joseph. Trois ans de matériel, de réseau et de virtualisation."
+      },
+      {
+        "quand": "2022 – 2025",
+        "titre": "Stages sur le terrain",
+        "texte": "Zmobile01 en réparation, Sogetrel deux fois en fibre optique, Micronov en matériel, Stratus Packaging au service informatique."
+      },
+      {
+        "quand": "2025",
+        "titre": "Mention bien, puis BTS SIO",
+        "texte": "Bac Pro obtenu avec mention bien. Entrée en BTS SIO option SLAM au lycée Joseph-Marie Carriat : le passage au développement."
+      },
+      {
+        "quand": "Mai – juin 2026",
+        "titre": "Stage de BTS chez Zmobile01",
+        "texte": "Site vitrine et back-office sécurisé, livrés seul : 5 326 lignes, 15 points de recette sur 15."
+      },
+      {
+        "quand": "Septembre 2026",
+        "titre": "Deuxième stage de BTS",
+        "texte": "Développement web et logiciel.",
+        "aPreciser": "[Entreprise et missions à préciser]"
+      },
+      {
+        "quand": "Janvier – février 2027",
+        "titre": "Troisième stage de BTS",
+        "texte": "En recherche : un stage de développement, du 11 janvier au 26 février 2027."
+      },
+      {
+        "quand": "Ensuite",
+        "titre": "Licence",
+        "texte": "Dans le même domaine, pour aller plus loin dans le développement."
+      }
+    ]
+  },
+  "detail": {
+    "retourParcours": "← Retour au parcours",
+    "retourProjets": "← Retour aux projets",
+    "etape": "ÉTAPE",
+    "projet": "PROJET",
+    "blocs": [
+      "Le contexte",
+      "Ce que j'y ai fait",
+      "Ce que j'en retiens",
+      "Les outils"
+    ],
+    "aRediger": "[À rédiger]",
+    "galerie": "[Photos et captures à venir]",
+    "etapePrecedente": "← Étape précédente",
+    "etapeSuivante": "Étape suivante →",
+    "projetPrecedent": "← Projet précédent",
+    "projetSuivant": "Projet suivant →"
+  },
+  "suite": {
+    "aria": "Page suivante",
+    "titre": "Nouvelle page",
+    "surtitre": "À DÉFINIR",
+    "texte": "Cette page arrive juste après le voyage dans la galaxie. Son contenu sera décrit plus tard.",
+    "emplacement": "[Contenu à venir]"
+  },
+  "contact": {
+    "aria": "Contact",
+    "surtitre": "CONTACT",
+    "titre": "Un stage, un projet, une question ?",
+    "github": "GitHub",
+    "cv": "CV en PDF",
+    "nouvelleFenetre": "(nouvelle fenêtre)"
+  },
+  "pied": {
+    "signature": "Iliass Ait Youssef · Bourg-en-Bresse",
+    "credit": "Trou noir calculé en temps réel dans ton navigateur"
+  }
+}

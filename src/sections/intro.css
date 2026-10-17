@@ -1,0 +1,93 @@
+/* ---- L'INTRO -----------------------------------------------------------------
+   Un rideau noir plein ecran. Quand il se leve, son bord du bas monte jusqu'en
+   haut de l'ecran, mais son contenu ne bouge pas : il est decouvert, pas
+   emporte.
+
+   Le prototype animait un `clip-path`. Ici, on n'anime que des transformations
+   (regle du systeme de mouvement) : la boite exterieure monte de toute sa
+   hauteur et masque ce qui depasse ; la boite interieure descend d'autant, en
+   meme temps et sur la meme courbe. Les deux mouvements s'annulent pour le
+   contenu, qui reste immobile pendant que le bord du rideau monte. */
+
+.intro {
+  position: fixed;
+  inset: 0;
+  z-index: var(--plan-intro);
+  overflow: hidden;
+  background: var(--fond);
+  transition: transform var(--d-tres-long) var(--courbe-trans);
+}
+
+.intro__dedans {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: max(var(--e-7), env(safe-area-inset-top, 0px)) var(--marge) max(var(--e-7), env(safe-area-inset-bottom, 0px));
+  transition: transform var(--d-tres-long) var(--courbe-trans);
+}
+
+.intro.sortie {
+  transform: translateY(-100%);
+}
+.intro.sortie .intro__dedans {
+  transform: translateY(100%);
+}
+
+/* Le rideau est leve : l'intro quitte la page. */
+.intro.partie {
+  display: none;
+}
+
+/* Les deux lignes de reperes, en mono discret. */
+.intro__ligne {
+  display: flex;
+  justify-content: space-between;
+  font-family: var(--mono);
+  font-size: var(--t-mono);
+  letter-spacing: var(--ecarte);
+  color: var(--texte-faible);
+  /* Sur un petit ecran, les deux libelles passent l'un sous l'autre (ils se touchaient a 360 px). */
+  flex-wrap: wrap;
+  gap: var(--e-1) var(--e-4);
+}
+.intro__ligne--bas {
+  margin-top: var(--e-3);
+}
+
+/* Le compteur : grand, fin, a chasse fixe (les chiffres ne dansent pas). */
+.intro__compteur {
+  font-family: var(--titre);
+  font-weight: 300;
+  font-size: var(--t-compteur-intro);
+  line-height: 0.85;
+  letter-spacing: -0.05em;
+  font-variant-numeric: tabular-nums;
+}
+.intro__compteur small {
+  margin-left: 0.15em;
+  font-size: 0.25em;
+  color: var(--violet);
+  vertical-align: top;
+}
+
+/* La ligne de chargement : un trait violet qui s'etire de gauche a droite. */
+.intro__charge {
+  height: 1px;
+  margin-top: var(--e-4-5);
+  background: var(--trait);
+}
+.intro__charge span {
+  display: block;
+  height: 100%;
+  background: var(--violet);
+  transform-origin: left;
+  transform: scaleX(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .intro {
+    display: none;
+  }
+}

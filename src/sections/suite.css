@@ -1,0 +1,22 @@
+/* ---- LA PAGE QUI SUIT LE VOYAGE ------------------------------------------------ */
+
+.suite__texte {
+  max-width: 40em;
+  margin: 0;
+  color: var(--texte-doux);
+}
+
+/* La place gardee pour le contenu a venir : un cadre en pointilles, et la
+   mention en orange, la couleur de ce qui reste a preciser. */
+.suite__emplacement {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: var(--hauteur-emplacement);
+  margin-top: var(--e-7-5);
+  border: 1px dashed var(--trait-fort);
+  border-radius: var(--rayon-l);
+  color: var(--a-preciser);
+  font-family: var(--mono);
+  font-size: var(--t-mono-l);
+}

@@ -1,0 +1,78 @@
+/* ---- LE CURSEUR PERSONNALISE ----------------------------------------------------
+   Un point (colle au pointeur) et un anneau (qui le suit). Invisibles tant que
+   la souris n'est pas dans la fenetre (`body.curseur-actif`). L'anneau grossit
+   sur ce qui se clique (`.survol`) et devient une pastille portant un mot
+   (`.etiquette`). Leur position est posee par moteurs/curseur/curseur.ts. */
+
+.curseur-point,
+.curseur-anneau {
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: var(--plan-curseur);
+  pointer-events: none;
+  border-radius: 50%;
+  opacity: 0;
+  transition: opacity var(--d-court);
+}
+
+.curseur-point {
+  width: var(--point-curseur);
+  height: var(--point-curseur);
+  margin: calc(var(--point-curseur) / -2) 0 0 calc(var(--point-curseur) / -2);
+  background: var(--violet-clair);
+}
+
+.curseur-anneau {
+  --taille: var(--anneau-curseur);
+  width: var(--taille);
+  height: var(--taille);
+  margin: calc(var(--taille) / -2) 0 0 calc(var(--taille) / -2);
+  border: 1px solid var(--curseur-trait);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition:
+    opacity var(--d-court),
+    width var(--d-moyen) var(--courbe-entree),
+    height var(--d-moyen) var(--courbe-entree),
+    margin var(--d-moyen) var(--courbe-entree),
+    background var(--d-court),
+    border-color var(--d-court);
+}
+
+.curseur-anneau span {
+  font-family: var(--mono);
+  font-size: var(--t-mono-xs);
+  letter-spacing: var(--espacement-mono);
+  color: var(--inverse);
+  opacity: 0;
+  transition: opacity var(--d-court);
+}
+
+body.curseur-actif .curseur-point,
+body.curseur-actif .curseur-anneau {
+  opacity: 1;
+}
+
+.curseur-anneau.survol {
+  --taille: var(--anneau-survol);
+  background: var(--curseur-survol);
+}
+
+.curseur-anneau.etiquette {
+  --taille: var(--anneau-etiquette);
+  background: var(--violet-clair);
+  border-color: var(--violet-clair);
+}
+.curseur-anneau.etiquette span {
+  opacity: 1;
+}
+
+/* Sans souris ou sans animation : rien. */
+@media (pointer: coarse), (prefers-reduced-motion: reduce) {
+  .curseur-point,
+  .curseur-anneau {
+    display: none;
+  }
+}

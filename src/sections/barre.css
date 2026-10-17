@@ -1,0 +1,144 @@
+/* ---- LA BARRE DU HAUT --------------------------------------------------------
+   Cachee au-dessus de l'ecran pendant l'ouverture, elle descend quand le trou
+   noir s'est range dans le logo (classe `visible`, posee par la boucle), ou
+   des que le clavier y entre : un lien qui a le focus doit se voir. */
+
+.barre {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: var(--plan-barre);
+  height: calc(var(--hauteur-barre) + env(safe-area-inset-top, 0px));
+  padding: env(safe-area-inset-top, 0px) var(--marge) 0 calc(var(--marge) + var(--logo) + var(--e-3-5));
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: var(--voile-barre);
+  backdrop-filter: blur(var(--flou-barre));
+  border-bottom: 1px solid var(--trait);
+  transform: translateY(-100%);
+  transition: transform var(--d-long) var(--courbe-entree);
+}
+
+.barre.visible,
+.barre:focus-within {
+  transform: none;
+}
+
+/* La place du logo : un rond vide, que le trou noir vient remplir. */
+.barre__logo {
+  position: absolute;
+  left: var(--marge);
+  top: calc(var(--e-4) + env(safe-area-inset-top, 0px));
+  width: var(--logo);
+  height: var(--logo);
+  border-radius: 50%;
+}
+
+/* Quand le trou noir est reparti en plein ecran derriere le contact, le logo
+   garde une silhouette : un disque noir cerne de violet. */
+body.logo-plonge .barre__logo {
+  background: radial-gradient(
+    circle,
+    var(--fond) 34%,
+    color-mix(in srgb, var(--violet-clair) 90%, transparent) 38%,
+    color-mix(in srgb, var(--violet) 25%, transparent) 52%,
+    transparent 70%
+  );
+}
+
+.barre__nom {
+  font-family: var(--titre);
+  font-weight: 700;
+  font-size: var(--t-carte);
+  color: var(--texte);
+}
+
+.barre__droite {
+  display: flex;
+  align-items: center;
+  gap: var(--ecart-nav);
+}
+
+.barre__nav {
+  display: flex;
+  gap: var(--ecart-nav);
+  font-size: var(--t-lien);
+}
+
+.barre__nav a {
+  position: relative;
+  padding: var(--e-1-5) 0;
+  color: var(--texte-doux);
+}
+
+/* Le soulignement se trace de gauche a droite et se retire vers la droite. */
+.barre__nav a::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 1px;
+  background: var(--violet-clair);
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform var(--d-moyen) var(--courbe-entree);
+}
+.barre__nav a:hover::after,
+.barre__nav a:focus-visible::after {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+.barre__nav a:hover {
+  color: var(--blanc);
+}
+
+/* La langue : discrete, en mono, comme un repere technique. */
+.barre__langues {
+  display: flex;
+  gap: var(--e-0-5);
+}
+.barre__langues button {
+  min-width: var(--e-8);
+  min-height: var(--e-8);
+  padding: 0 var(--e-2);
+  border: 1px solid transparent;
+  border-radius: var(--rayon-pilule);
+  background: transparent;
+  color: var(--texte-faible);
+  font-family: var(--mono);
+  font-size: var(--t-mono-xs);
+  letter-spacing: var(--ecarte-moyen);
+  cursor: pointer;
+  transition:
+    color var(--d-court) var(--courbe-entree),
+    border-color var(--d-court) var(--courbe-entree);
+}
+.barre__langues button:hover {
+  color: var(--texte);
+}
+.barre__langues button[aria-pressed='true'] {
+  color: var(--violet-clair);
+  border-color: var(--trait-fort);
+}
+
+/* Le trait de progression, a l'echelle de l'avancement dans la page. */
+.barre__progression {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -1px;
+  height: 1px;
+  background: var(--violet);
+  transform-origin: left;
+  transform: scaleX(0);
+}
+
+/* Sur un telephone, seul le dernier lien reste : le contact. */
+@media (max-width: 720px) {
+  .barre__nav a:not(:last-child) {
+    display: none;
+  }
+}

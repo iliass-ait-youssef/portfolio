@@ -1,0 +1,224 @@
+/* ==========================================================================
+   LES JETONS — la seule source de verite de l'identite du site.
+   Valeurs reprises du prototype valide (docs/reference/portfolio-voyage.html).
+   Le CSS les lit directement ; les moteurs graphiques (trou noir, saut,
+   constellation, voyage) les relisent au demarrage par `src/moteur/palette.ts`,
+   le systeme de mouvement par `src/mouvement/jetons.ts`.
+   ========================================================================== */
+
+:root {
+  /* ---- Fonds ------------------------------------------------------------- */
+  --fond: #000000;          /* la page, noir pur */
+  --fond-section: #030208;  /* les sections de lecture, un souffle au-dessus du noir */
+  --fond-carte: #020106;    /* le ciel de la constellation */
+  --panneau: #0b0818;       /* cartes et blocs */
+  --voile-barre: rgba(3, 2, 8, 0.72);   /* la barre du haut, sur flou */
+  --voile-jalon: rgba(6, 4, 16, 0.78);  /* les cartes d'etape du voyage */
+  --curseur-trait: rgba(201, 182, 255, 0.7);   /* le trait de l'anneau du curseur */
+  --curseur-survol: rgba(169, 139, 255, 0.12);  /* le fond de l'anneau sur ce qui se clique */
+  --espacement-mono: 0.08em;                    /* l'espacement du mot dans l'anneau */
+  --voile-detail: rgba(3, 2, 8, 0.6);   /* le bouton de retour des pages de detail */
+  --detail-lueur: rgba(90, 60, 200, 0.22);  /* la lueur violette en haut a droite d'une page de detail */
+  --violet-fond: rgba(169, 139, 255, 0.16);  /* le fond d'un bouton survole */
+
+  /* ---- Texte ------------------------------------------------------------- */
+  --texte: #f4f1fa;
+  --texte-doux: #c3bad6;
+  --texte-faible: #9990ae;
+  --inverse: #0a0716;       /* texte pose sur le violet */
+  --blanc: #ffffff;
+  /* Ce qui reste a preciser par Iliass : en orange, pour que ca se voie. */
+  --a-preciser: #ffb37a;
+
+  /* ---- Traits et accent -------------------------------------------------- */
+  --trait: rgba(169, 139, 255, 0.2);
+  --trait-fort: rgba(169, 139, 255, 0.5);
+  --trait-clair: rgba(233, 227, 247, 0.35);  /* le contour des boutons creux */
+  --violet: #a98bff;        /* L'ACCENT */
+  --violet-clair: #c9b6ff;
+
+  /* ---- Les couleurs des moteurs graphiques -------------------------------
+     Les canvas et le shader ne lisent pas le CSS a chaque image : ils relisent
+     ces jetons une fois, au demarrage. Une teinte changee ici change le ciel. */
+
+  /* Le trou noir : le disque d'accretion, du plus froid au plus chaud, et la
+     couleur des etoiles du ciel, des bleues aux orangees. */
+  --trou-disque-froid: rgb(58, 26, 140);
+  --trou-disque-tiede: rgb(179, 132, 255);
+  --trou-disque-chaud: rgb(255, 248, 255);
+  --repli-rayon: 12vmin;   /* sans WebGL : le disque noir du trou noir dessine en CSS */
+  --repli-halo: 20vmin;    /* sans WebGL : jusqu'ou s'etend l'anneau lumineux */
+  --repli-hauteur: 52%;    /* sans WebGL : la hauteur du centre, dans l'ecran */
+  --trou-etoile-bleue: rgb(179, 204, 255);
+  --trou-etoile-orangee: rgb(255, 217, 179);
+
+  /* La constellation : une teinte par couche, du silicium a l'interface. */
+  --couche-1: rgb(143, 182, 255);
+  --couche-2: rgb(157, 157, 255);
+  --couche-3: rgb(179, 155, 255);
+  --couche-4: rgb(201, 160, 255);
+  --couche-5: rgb(224, 179, 255);
+  --etoile-projet: rgb(236, 228, 255);   /* les etoiles-projets et les liens eclaires */
+  --poussiere: rgb(220, 214, 245);       /* les etoiles du fond */
+  --libelle-actif: rgb(236, 230, 255);
+  --libelle-eteint: rgb(185, 176, 204);
+
+  /* Le bandeau defilant : le contour des mots creux et le separateur. */
+  --bandeau-contour: rgba(201, 182, 255, 0.55);
+  --bandeau-separateur: rgba(201, 182, 255, 0.35);
+
+  /* Les cartes de projet : le reflet qui suit le curseur. */
+  --reflet-carte: rgba(201, 182, 255, 0.14);
+  --rayon-reflet: 420px;
+
+  /* Le saut : la lueur du fond, les traits d'etoiles, le second ton du tunnel. */
+  --saut-lueur: rgb(90, 60, 200);
+  --saut-trait: rgb(235, 230, 255);
+  --saut-trait-vif: rgb(200, 190, 255);
+  --saut-anneau-bleu: rgb(110, 190, 255);
+  --saut-ombre-mot: rgba(169, 139, 255, 0.55);  /* la lueur du mot PROJETS */
+
+  /* Le voyage : les quatre familles d'etoiles de la galaxie, sa lueur, le
+     chemin et les teintes des etoiles-etapes (actuelle violette, futures
+     bleutees). */
+  --galaxie-coeur: rgb(255, 236, 210);
+  --galaxie-bleu: rgb(130, 160, 255);
+  --galaxie-rose: rgb(255, 140, 205);
+  --galaxie-lueur: rgb(255, 225, 190);
+  --chemin-fait: rgb(220, 208, 255);
+  --onde-arrivee: rgb(230, 220, 255);
+  --etape-actuelle: rgb(199, 168, 255);
+  --etape-future: rgb(184, 209, 255);
+
+  /* ---- Typographie ------------------------------------------------------- */
+  --titre: 'Space Grotesk', 'Segoe UI', system-ui, sans-serif;  /* variable, 300 a 700 */
+  --corps: 'Instrument Sans', 'Segoe UI', system-ui, sans-serif;
+  --mono: 'JetBrains Mono', ui-monospace, Consolas, monospace;
+
+  --t-mono-xs: 11px;      /* indices, compteur d'etapes */
+  --t-mono-s: 11.5px;     /* etiquettes de technologies */
+  --t-mono: 12px;         /* sur-titres */
+  --t-mono-l: 13px;       /* mentions « a rediger » */
+  --t-petit: 13px;
+  --t-lien: 14px;
+  --t-ui: 15px;           /* boutons, legendes */
+  --t-legende: 15.5px;
+  --t-carte: 16px;
+  --t-corps: 17px;
+  --t-chapo: 18px;
+  --t-bloc: 20px;
+  --t-etape: 22px;
+  --t-chiffre-s: 30px;
+  --t-carte-titre: 30px;
+  --t-compteur-intro: clamp(90px, 18vw, 260px);
+  --t-hero: clamp(56px, 9.5vw, 124px);
+  --t-declaration: clamp(30px, 3.6vw, 52px);
+  --t-section: clamp(34px, 4vw, 56px);
+  --t-chiffre: clamp(42px, 4.6vw, 64px);
+  --t-bandeau: clamp(54px, 8.5vw, 128px);
+  --t-carte-ciel: clamp(30px, 3vw, 42px);
+  --t-saut: clamp(64px, 15vw, 230px);
+  --t-parcours: clamp(44px, 6vw, 88px);
+  --t-detail: clamp(42px, 6vw, 84px);
+  --t-contact: clamp(48px, 8vw, 120px);
+  --t-courriel: clamp(20px, 2.4vw, 30px);
+
+  --resserre: -0.03em;
+  --resserre-fort: -0.045em;
+  --ecarte: 0.12em;
+  --ecarte-moyen: 0.08em;
+  --interligne: 1.6;
+
+  /* ---- Espacements, base 4 px ------------------------------------------- */
+  --e-0-5: 2px;
+  --e-1: 4px;
+  --e-1-5: 6px;   /* demi-pas : le prototype en use souvent */
+  --e-2: 8px;
+  --e-2-5: 10px;
+  --e-3: 12px;
+  --e-3-5: 14px;
+  --e-4: 16px;
+  --e-4-5: 18px;
+  --e-5: 20px;
+  --e-5-5: 22px;
+  --e-6: 24px;
+  --e-6-5: 26px;
+  --e-7: 28px;
+  --e-7-5: 30px;
+  --e-8: 32px;
+  --e-8-5: 34px;
+  --e-9: 36px;
+  --e-10: 40px;
+  --e-11: 44px;
+  --e-12: 48px;
+  --e-15: 60px;
+  --e-16: 64px;
+  --e-18: 72px;
+  --e-20: 80px;
+  --e-25: 100px;
+  --marge: clamp(20px, 5vw, 72px);
+  --ecart-nav: clamp(16px, 2.5vw, 34px);
+  --section-pad: clamp(80px, 12vh, 140px);
+  --contact-pad: clamp(110px, 16vh, 180px);
+  --largeur-max: 1280px;
+  --largeur-ouverture: 820px;
+  --largeur-detail: 1100px;
+  --largeur-tete-detail: 640px;  /* le chapo d'une page de detail */
+  --taille-etoile-detail: 360px;
+  --hauteur-galerie: 180px;
+  --largeur-jalon: 340px;     /* les cartes d'etape du voyage */
+  --largeur-hud: 420px;       /* le compteur d'etapes */
+  --cran: 7px;                /* un point de la frise du voyage */
+  --hauteur-emplacement: 260px;  /* la place gardee pour la nouvelle page */
+
+  /* ---- Dimensions -------------------------------------------------------- */
+  --hauteur-barre: 76px;
+  --logo: 44px;
+  --bouton: 52px;
+  --cible: 44px;
+  --point-curseur: 6px;
+  --anneau-curseur: 38px;
+  --anneau-survol: 62px;      /* l'anneau sur ce qui se clique */
+  --anneau-etiquette: 84px;   /* l'anneau devenu pastille avec un mot */
+  --rayon-s: 6px;
+  --rayon-m: 12px;
+  --rayon-l: 16px;
+  --rayon-xl: 20px;
+  --rayon-venir: 14px;   /* les emplacements « a venir » */
+  --rayon-pilule: 999px;
+  --flou-barre: 14px;
+  --flou-jalon: 10px;
+  --perspective-cartes: 1400px;
+  --perspective-lettres: 700px;
+  --perspective-saut: 900px;
+
+  /* ---- Mouvement ----------------------------------------------------------
+     Trois courbes d'une meme famille, cinq durees, un pas de cascade. Rien ne
+     s'anime hors de ce systeme : le CSS les lit ici, la boucle d'animation par
+     `src/mouvement/jetons.ts`.
+       entree      decelere fort, pour ce qui arrive
+       sortie      accelere, pour ce qui part
+       transition  les deux, pour ce qui change d'etat */
+  --courbe-entree: cubic-bezier(0.16, 1, 0.3, 1);
+  --courbe-sortie: cubic-bezier(0.7, 0, 0.84, 0);
+  --courbe-trans: cubic-bezier(0.65, 0, 0.35, 1);
+  --courbe-ressort: cubic-bezier(0.34, 1.56, 0.64, 1);  /* un depassement, puis le retour : les boutons aimantes */
+  --d-eclair: 0.15s;     /* suivre la souris */
+  --d-court: 0.3s;       /* micro-interactions */
+  --d-moyen: 0.6s;       /* un element qui bouge */
+  --d-long: 0.9s;        /* une revelation, une page qui s'ouvre */
+  --d-tres-long: 1.4s;   /* le rideau, le compteur, un defilement d'ancre */
+  --cascade: 0.035s;     /* entre deux lettres */
+  --d-nulle: 0.01ms;     /* « sans animation » : une duree non nulle, pour que les evenements partent */
+
+  /* ---- Plans de superposition ------------------------------------------- */
+  --plan-trou-fond: 0;   /* le trou noir revenu derriere le contact, sous les sections */
+  --plan-section: 1;
+  --plan-barre: 20;
+  --plan-trou: 25;
+  --plan-ouverture: 30;
+  --plan-contact: 31;
+  --plan-detail: 50;
+  --plan-curseur: 60;
+  --plan-intro: 70;
+}

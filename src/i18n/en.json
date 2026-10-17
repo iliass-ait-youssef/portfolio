@@ -1,0 +1,310 @@
+{
+  "meta": {
+    "titre": "Iliass Ait Youssef — From cable to code",
+    "description": "Application developer, BTS SIO SLAM student in Bourg-en-Bresse, France. Three years of hardware and networking before writing business code: projects, skills by layer, journey."
+  },
+  "commun": {
+    "sautContenu": "Skip to content",
+    "langue": "Site language",
+    "fr": "FR",
+    "en": "EN",
+    "frLong": "Français",
+    "enLong": "English"
+  },
+  "intro": {
+    "nom": "ILIASS AIT YOUSSEF",
+    "devise": "FROM CABLE TO CODE",
+    "calcul": "COMPUTING THE HORIZON",
+    "passer": "CLICK TO SKIP"
+  },
+  "barre": {
+    "logo": "Back to the top of the page",
+    "nom": "Ait Youssef",
+    "navigation": "Main navigation",
+    "projets": "Projects",
+    "competences": "Skills",
+    "parcours": "Journey",
+    "contact": "Contact"
+  },
+  "ouverture": {
+    "aria": "Introduction",
+    "surtitre": "APPLICATION DEVELOPER, BTS SIO SLAM",
+    "titre1": "From cable",
+    "titre2": "to code.",
+    "chapo": "Three years of hardware and networking before writing business code. I know what lies beneath an application.",
+    "voirProjets": "See the projects",
+    "contacter": "Get in touch",
+    "defiler": "SCROLL"
+  },
+  "apropos": {
+    "aria": "About",
+    "declaration": "I build applications, and I know what runs underneath them:",
+    "declarationFin": "the machine, the server, the network, the database.",
+    "chiffres": [
+      {
+        "valeur": 3,
+        "unite": " years",
+        "legende": "of hardware and networking, in vocational school"
+      },
+      {
+        "valeur": 5,
+        "unite": " internships",
+        "legende": "in companies, from the field to the code"
+      },
+      {
+        "valeur": 5326,
+        "unite": "",
+        "legende": "lines written solo for Zmobile01"
+      }
+    ]
+  },
+  "bandeau": {
+    "rang1": [
+      "PHP",
+      "C#",
+      "JAVASCRIPT",
+      "THREE.JS",
+      "SQL",
+      "WEBGL"
+    ],
+    "rang2": [
+      "CISCO",
+      "PROXMOX",
+      "VLAN",
+      "DNS",
+      "APACHE",
+      "ACTIVE DIRECTORY"
+    ]
+  },
+  "saut": {
+    "etiquette": "JUMP TO THE PROJECTS",
+    "mot": "PROJECTS"
+  },
+  "projets": {
+    "aria": "Projects",
+    "titre": "Projects",
+    "surtitre": "CASE STUDIES",
+    "lire": "Read",
+    "cartes": [
+      {
+        "code": "BTS INTERNSHIP",
+        "etat": "DELIVERED",
+        "titre": "Zmobile01",
+        "resume": "A shop with no IT department and an old website stuck on errors. I pitched the project to the manager, then delivered on my own a showcase site and a secure back office he runs himself.",
+        "metriques": [
+          {
+            "valeur": "8",
+            "compteur": true,
+            "legende": "batches delivered"
+          },
+          {
+            "valeur": "15/15",
+            "compteur": false,
+            "legende": "acceptance tests"
+          },
+          {
+            "valeur": "7",
+            "compteur": true,
+            "legende": "solutions ruled out"
+          }
+        ],
+        "etiquettes": [
+          "PHP 8",
+          "JavaScript",
+          "Three.js",
+          "Apache",
+          "CSRF",
+          "GDPR"
+        ]
+      },
+      {
+        "code": "PERSONAL PROJECT",
+        "etat": "IN PROGRESS",
+        "titre": "This portfolio",
+        "resume": "The black hole on the opening screen is computed in real time: every pixel casts a ray of light whose path is bent by gravity, just like in the film Interstellar.",
+        "metriques": [
+          {
+            "valeur": "2",
+            "compteur": false,
+            "legende": "languages"
+          },
+          {
+            "valeur": "60",
+            "compteur": false,
+            "legende": "target frames per second"
+          }
+        ],
+        "etiquettes": [
+          "Three.js",
+          "WebGL",
+          "GLSL",
+          "TypeScript",
+          "Accessibility"
+        ]
+      }
+    ],
+    "aVenir": [
+      {
+        "titre": "C# and OOP",
+        "texte": "Case study coming soon"
+      },
+      {
+        "titre": "Databases",
+        "texte": "Case study coming soon"
+      },
+      {
+        "titre": "Infrastructure",
+        "texte": "Case study coming soon"
+      }
+    ]
+  },
+  "constellation": {
+    "aria": "Skills: the constellation",
+    "canvas": "Skills constellation: tools are stars grouped by layer, from silicon to interface, and projects link the layers",
+    "surtitre": "SKILLS",
+    "titreDebut": "The map",
+    "texteDebut": "Every star is a tool, every constellation a technical layer. Scroll to watch it draw itself, from cable to code.",
+    "couche": "Layer",
+    "outilsLabel": "Tools",
+    "titreProjets": "Projects link the layers",
+    "texteProjets": "The bright stars are my studies and my projects. Their links show which tools I actually used in each one.",
+    "titreExplore": "Explore",
+    "texteExplore": "Hover over a star to see what it connects to.",
+    "etatExplore": "From silicon to interface, in five layers.",
+    "couches": [
+      {
+        "nom": "Silicon",
+        "texte": "Hardware: servicing Cisco equipment, deploying workstations, fiber optics in the field."
+      },
+      {
+        "nom": "Network",
+        "texte": "The services that connect the machines: directory, addressing, naming, virtual networks, virtualization, web server."
+      },
+      {
+        "nom": "Data",
+        "texte": "The model, the queries, normalization."
+      },
+      {
+        "nom": "Application",
+        "texte": "Business logic, and its security."
+      },
+      {
+        "nom": "Interface",
+        "texte": "What the user sees and touches."
+      }
+    ],
+    "outils": {
+      "cisco": "Cisco",
+      "postes": "Workstations",
+      "fibre": "Fiber optics",
+      "ad": "AD",
+      "dhcp": "DHCP",
+      "dns": "DNS",
+      "vlan": "VLAN",
+      "proxmox": "Proxmox",
+      "apache": "Apache",
+      "sql": "SQL",
+      "mcd": "Data model",
+      "php": "PHP",
+      "csharp": "C#",
+      "javascript": "JavaScript",
+      "threejs": "Three.js",
+      "html": "HTML",
+      "css": "CSS",
+      "webgl": "WebGL",
+      "accessibilite": "Accessibility"
+    },
+    "projets": {
+      "bacpro": "Vocational Bac",
+      "bts": "BTS SIO",
+      "zmobile": "Zmobile01",
+      "portfolio": "This portfolio"
+    }
+  },
+  "voyage": {
+    "aria": "Journey",
+    "surtitre": "JOURNEY · 2022 → TODAY",
+    "titre": "The journey",
+    "texte": "Every star is a milestone. We start at the edge of the galaxy and travel toward its heart.",
+    "voirDetail": "See details",
+    "details": "Details",
+    "acces": "Read the journey step by step",
+    "liste": "The steps of the journey",
+    "etape": "STEP",
+    "jalons": [
+      {
+        "quand": "2022",
+        "titre": "Vocational Bac in Digital Systems",
+        "texte": "RISC option, Saint-Joseph high school. Three years of hardware, networking and virtualization."
+      },
+      {
+        "quand": "2022 – 2025",
+        "titre": "Internships in the field",
+        "texte": "Zmobile01 on repairs, Sogetrel twice on fiber optics, Micronov on hardware, Stratus Packaging in the IT department."
+      },
+      {
+        "quand": "2025",
+        "titre": "Honours, then BTS SIO",
+        "texte": "Vocational Bac earned with honours. Started the BTS SIO, SLAM option, at Joseph-Marie Carriat high school: the move into development."
+      },
+      {
+        "quand": "May – June 2026",
+        "titre": "BTS internship at Zmobile01",
+        "texte": "Showcase site and secure back office, delivered solo: 5,326 lines, 15 out of 15 acceptance checks."
+      },
+      {
+        "quand": "September 2026",
+        "titre": "Second BTS internship",
+        "texte": "Web and software development.",
+        "aPreciser": "[Company and assignments to be confirmed]"
+      },
+      {
+        "quand": "January – February 2027",
+        "titre": "Third BTS internship",
+        "texte": "Looking for a development internship, from January 11 to February 26, 2027."
+      },
+      {
+        "quand": "Next",
+        "titre": "Bachelor's degree",
+        "texte": "In the same field, to go further in development."
+      }
+    ]
+  },
+  "detail": {
+    "retourParcours": "← Back to the journey",
+    "retourProjets": "← Back to the projects",
+    "etape": "STEP",
+    "projet": "PROJECT",
+    "blocs": [
+      "The context",
+      "What I did",
+      "What I took from it",
+      "The tools"
+    ],
+    "aRediger": "[To be written]",
+    "galerie": "[Photos and screenshots coming soon]",
+    "etapePrecedente": "← Previous step",
+    "etapeSuivante": "Next step →",
+    "projetPrecedent": "← Previous project",
+    "projetSuivant": "Next project →"
+  },
+  "suite": {
+    "aria": "Next page",
+    "titre": "New page",
+    "surtitre": "TO BE DEFINED",
+    "texte": "This page comes right after the journey through the galaxy. Its content will be described later.",
+    "emplacement": "[Content coming soon]"
+  },
+  "contact": {
+    "aria": "Contact",
+    "surtitre": "CONTACT",
+    "titre": "An internship, a project, a question?",
+    "github": "GitHub",
+    "cv": "CV (PDF)",
+    "nouvelleFenetre": "(opens in a new window)"
+  },
+  "pied": {
+    "signature": "Iliass Ait Youssef · Bourg-en-Bresse",
+    "credit": "Black hole computed in real time in your browser"
+  }
+}

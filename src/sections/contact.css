@@ -1,0 +1,71 @@
+/* ---- LE CONTACT ------------------------------------------------------------------
+   Un ecran plein, centre, transparent : le trou noir revient derriere lui. */
+
+.contact {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-top: var(--contact-pad);
+  padding-bottom: var(--contact-pad);
+  overflow: hidden;
+  background: transparent;
+  text-align: center;
+}
+
+/* Un voile sombre au centre : le texte reste lisible sur le disque. */
+.contact::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse 60% 55% at 50% 50%, color-mix(in srgb, var(--fond) 72%, transparent), transparent 75%);
+  pointer-events: none;
+}
+
+.contact__interieur {
+  position: relative;
+}
+
+.contact__titre {
+  margin-top: var(--e-4-5);
+  font-size: var(--t-contact);
+  font-weight: 400;
+  line-height: 0.95;
+  letter-spacing: var(--resserre-fort);
+}
+
+/* L'adresse, soulignee ; au survol, le trait se retire vers la droite. */
+.contact__courriel {
+  position: relative;
+  display: inline-block;
+  margin-top: var(--e-8-5);
+  padding-bottom: var(--e-1);
+  font-family: var(--titre);
+  font-size: var(--t-courriel);
+  color: var(--texte);
+  /* Sur un tres petit ecran, l'adresse peut se couper plutot que deborder. */
+  overflow-wrap: anywhere;
+}
+.contact__courriel::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 1px;
+  background: var(--violet-clair);
+  transform-origin: left;
+  transition: transform var(--d-moyen) var(--courbe-entree);
+}
+.contact__courriel:hover::after {
+  transform: scaleX(0);
+  transform-origin: right;
+}
+
+.contact__liens {
+  display: flex;
+  justify-content: center;
+  gap: var(--e-6);
+  margin-top: var(--e-6-5);
+  font-size: var(--t-ui);
+}

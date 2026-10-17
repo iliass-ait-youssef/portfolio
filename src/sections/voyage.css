@@ -1,0 +1,208 @@
+/* ---- LE VOYAGE DANS LA GALAXIE --------------------------------------------------
+   Une section collante de 880 vh (voir sections.css). Le canvas occupe tout
+   l'ecran ; l'en-tete, les cartes d'etape, le compteur et le voile sont poses
+   dessus. Les cartes sont placees par le moteur (`transform`), une a la fois. */
+
+.voyage__canvas {
+  position: absolute;
+  inset: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.voyage-entete {
+  position: absolute;
+  left: var(--marge);
+  top: 50%;
+  z-index: 2;
+  transform: translateY(-50%);
+  pointer-events: none;
+}
+.voyage-entete h2 {
+  margin-top: var(--e-3-5);
+  font-size: var(--t-parcours);
+  line-height: 0.95;
+  letter-spacing: var(--resserre-fort);
+}
+.voyage-entete p {
+  max-width: 26em;
+  margin: var(--e-3-5) 0 0;
+  color: var(--texte-doux);
+}
+
+/* ---- Les cartes d'etape --------------------------------------------------------- */
+.jalons {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.jalon {
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: 3;
+  width: min(var(--largeur-jalon), 80vw);
+  padding: var(--e-4-5) var(--e-5);
+  border: 1px solid var(--trait-fort);
+  border-radius: var(--rayon-l);
+  background: var(--voile-jalon);
+  backdrop-filter: blur(var(--flou-jalon));
+  opacity: 0;
+  pointer-events: none;
+  will-change: transform, opacity;
+}
+.jalon .quand {
+  font-family: var(--mono);
+  font-size: var(--t-mono);
+  letter-spacing: var(--ecarte-moyen);
+  color: var(--violet-clair);
+}
+.jalon h3 {
+  margin: var(--e-1-5) 0;
+  font-size: var(--t-etape);
+  letter-spacing: -0.02em;
+}
+.jalon p {
+  margin: 0;
+  color: var(--texte-doux);
+  font-size: var(--t-ui);
+  line-height: 1.55;
+}
+
+.jalon-lien {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--e-2);
+  min-height: var(--e-10);
+  margin-top: var(--e-3);
+  padding: 0 var(--e-4);
+  border: 1px solid var(--trait-fort);
+  border-radius: var(--rayon-pilule);
+  background: transparent;
+  color: var(--texte);
+  font-size: var(--t-lien);
+  cursor: pointer;
+  transition:
+    background var(--d-court),
+    border-color var(--d-court);
+}
+.jalon-lien:hover {
+  border-color: var(--violet-clair);
+  background: var(--violet-fond);
+}
+
+/* Sur un petit ecran, la carte se pose en bas, au milieu. */
+@media (max-width: 900px) {
+  .jalon {
+    left: 50%;
+    top: auto;
+    bottom: calc(var(--e-20) + var(--e-2-5));
+  }
+}
+
+/* ---- Le compteur d'etapes et la frise ------------------------------------------- */
+.voyage-hud {
+  position: absolute;
+  left: var(--marge);
+  bottom: max(var(--e-7), env(safe-area-inset-bottom, 0px));
+  z-index: 3;
+  width: min(var(--largeur-hud), calc(100% - 2 * var(--marge)));
+  font-family: var(--mono);
+  font-size: var(--t-mono-xs);
+  letter-spacing: 0.1em;
+  color: var(--texte-faible);
+  opacity: 0;
+}
+.piste-temps {
+  position: relative;
+  height: 1px;
+  margin-top: var(--e-3);
+  background: var(--trait-fort);
+}
+.piste-temps span {
+  position: absolute;
+  inset: 0;
+  background: var(--violet-clair);
+  transform-origin: left;
+  transform: scaleX(0);
+}
+.crans {
+  display: flex;
+  justify-content: space-between;
+  margin-top: calc(-1 * var(--e-1));
+}
+.crans i {
+  width: var(--cran);
+  height: var(--cran);
+  border: 1px solid var(--violet);
+  border-radius: 50%;
+  background: var(--fond);
+}
+.crans i.passe {
+  background: var(--violet);
+}
+
+/* Le voile noir de la fin : le voyage s'efface avant la page suivante. */
+.voyage__voile {
+  position: absolute;
+  inset: 0;
+  z-index: 4;
+  background: var(--fond);
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* ---- L'acces au clavier : cache, sauf au focus --------------------------------- */
+.voyage__acces {
+  position: absolute;
+  left: var(--marge);
+  top: calc(var(--hauteur-barre) + var(--e-4));
+  z-index: 5;
+  padding: var(--e-3) var(--e-4);
+  border-radius: var(--rayon-pilule);
+  background: var(--violet);
+  color: var(--inverse);
+  font-weight: 600;
+  transform: translateY(calc(-100% - var(--hauteur-barre) - var(--e-8)));
+}
+.voyage__acces:focus {
+  position: sticky;
+  transform: none;
+  color: var(--inverse);
+}
+
+/* ---- Sans animation : une liste de cartes, toutes visibles ----------------------- */
+@media (prefers-reduced-motion: reduce) {
+  .voyage {
+    height: auto;
+    padding: var(--e-25) var(--marge);
+    background: var(--fond-section);
+  }
+  .voyage .colle {
+    position: static;
+    height: auto;
+    overflow: visible;
+  }
+  .voyage__canvas,
+  .voyage-hud,
+  .voyage__voile {
+    display: none;
+  }
+  .voyage-entete {
+    position: static;
+    margin-bottom: var(--e-7-5);
+    transform: none;
+  }
+  .jalon {
+    position: static;
+    width: auto;
+    max-width: 640px;
+    margin-bottom: var(--e-3-5);
+    opacity: 1;
+    transform: none;
+    pointer-events: auto;
+    visibility: visible;
+  }
+}

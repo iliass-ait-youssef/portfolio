@@ -1,0 +1,44 @@
+/* ---- LE BANDEAU DEFILANT ----------------------------------------------------- */
+
+.bandeau {
+  position: relative;
+  z-index: var(--plan-section);
+  overflow: hidden;
+  padding: var(--e-7-5) 0 var(--e-15);
+  background: var(--fond-section);
+}
+
+.bandeau__rang {
+  white-space: nowrap;
+  will-change: transform;
+}
+.bandeau__rang + .bandeau__rang {
+  margin-top: var(--e-1-5);
+}
+
+.bandeau__piste {
+  display: inline-flex;
+  gap: 0.5em;
+  font-family: var(--titre);
+  font-weight: 700;
+  font-size: var(--t-bandeau);
+  line-height: 1.05;
+  letter-spacing: var(--resserre-fort);
+}
+
+/* Tous les mots sont en contour, les separateurs en gris-violet. Le prototype
+   avait aussi une regle « un mot sur deux en violet » ; elle ne s'appliquait
+   jamais (les separateurs decalent la parite), et la capture validee ne la
+   montre pas : le rendu reel est reproduit, pas l'intention du code. */
+.bandeau__groupe {
+  display: inline-flex;
+  gap: 0.5em;
+}
+.bandeau__mot {
+  color: transparent;
+  -webkit-text-stroke: 1px var(--bandeau-contour);
+}
+.bandeau__groupe i {
+  font-style: normal;
+  color: var(--bandeau-separateur);
+}

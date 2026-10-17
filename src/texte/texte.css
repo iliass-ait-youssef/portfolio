@@ -1,0 +1,65 @@
+/* ---- LES LETTRES QUI MONTENT -------------------------------------------------
+   Chaque mot est une boite qui masque ce qui depasse ; chaque lettre part
+   sous le masque, couchee vers l'arriere (−85 degres), et se redresse en
+   montant quand son bloc recoit la classe `visible`. Le retard de chaque
+   lettre vaut son indice multiplie par le pas de cascade. */
+
+.mot {
+  display: inline-block;
+  overflow: hidden;
+  vertical-align: top;
+  /* Un peu de marge sous la ligne : les jambages (g, p, q) ne sont pas coupes. */
+  padding-bottom: 0.08em;
+  margin-bottom: -0.08em;
+  white-space: nowrap;
+  perspective: var(--perspective-lettres);
+}
+
+.car {
+  display: inline-block;
+}
+
+.car-int {
+  display: inline-block;
+  transform: translateY(100%) rotateX(-85deg);
+  transform-origin: 50% 100%;
+  transition: transform var(--d-long) var(--courbe-entree);
+  transition-delay: calc(var(--i, 0) * var(--cascade));
+}
+
+.visible .car-int {
+  transform: none;
+}
+
+/* ---- LES BLOCS QUI MONTENT ---------------------------------------------------
+   Un bloc `data-apparait` attend sous sa place, transparent ; quand il entre a
+   l'ecran (revelation.ts), il monte et apparait, avec son propre retard `--d`
+   pour se suivre en cascade. */
+
+[data-apparait] {
+  opacity: 0;
+  transform: translateY(var(--e-10));
+  transition:
+    opacity var(--d-long) var(--courbe-entree),
+    transform var(--d-long) var(--courbe-entree);
+  transition-delay: var(--d, 0s);
+}
+[data-apparait].visible {
+  opacity: 1;
+  transform: none;
+}
+
+/* Les chiffres d'un compteur gardent la meme largeur : le nombre ne tremble
+   pas pendant qu'il monte. */
+.compteur {
+  font-variant-numeric: tabular-nums;
+}
+
+/* Sans animation : tout est a sa place, tout de suite. */
+@media (prefers-reduced-motion: reduce) {
+  .car-int,
+  [data-apparait] {
+    opacity: 1;
+    transform: none;
+  }
+}

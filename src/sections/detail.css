@@ -1,0 +1,162 @@
+/* ---- LES PAGES DE DETAIL --------------------------------------------------------
+   Une page plein ecran, en surimpression. Elle s'ouvre en cercle depuis le
+   point (--ox, --oy) : `clip-path` passe d'un cercle de rayon nul a un cercle
+   qui couvre l'ecran, puis l'inverse a la fermeture. Fermee, elle est cachee
+   pour de bon (`visibility`) une fois le cercle replie : ni clic, ni
+   tabulation. */
+
+.detail {
+  position: fixed;
+  inset: 0;
+  z-index: var(--plan-detail);
+  overflow-y: auto;
+  background:
+    radial-gradient(ellipse at 75% 20%, var(--detail-lueur), transparent 55%),
+    var(--fond-section);
+  clip-path: circle(0px at var(--ox, 50%) var(--oy, 50%));
+  visibility: hidden;
+  transition:
+    clip-path var(--d-long) var(--courbe-trans),
+    visibility 0s linear var(--d-long);
+}
+.detail.ouvert {
+  clip-path: circle(150vmax at var(--ox, 50%) var(--oy, 50%));
+  visibility: visible;
+  transition:
+    clip-path var(--d-long) var(--courbe-trans),
+    visibility 0s;
+}
+
+.detail__interieur {
+  position: relative;
+  max-width: var(--largeur-detail);
+  margin: 0 auto;
+  padding: calc(var(--e-7) + env(safe-area-inset-top, 0px)) var(--marge) calc(var(--e-15) + env(safe-area-inset-bottom, 0px));
+}
+
+.detail__haut {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--e-4);
+}
+
+.detail__retour {
+  min-height: var(--cible);
+  padding: 0 var(--e-4-5);
+  border: 1px solid var(--trait-fort);
+  border-radius: var(--rayon-pilule);
+  background: var(--voile-detail);
+  color: var(--texte);
+  font-size: var(--t-lien);
+  cursor: pointer;
+}
+.detail__retour:hover {
+  border-color: var(--violet-clair);
+}
+
+/* L'etoile de la page : la meme croix que dans le voyage. L'image est faite
+   pour s'ajouter a du noir ; `screen` fait disparaitre son fond (sans lui,
+   elle apparaissait dans un carre noir). */
+.detail__etoile {
+  position: absolute;
+  right: var(--marge);
+  top: var(--e-15);
+  width: min(var(--taille-etoile-detail), 40vw);
+  height: min(var(--taille-etoile-detail), 40vw);
+  mix-blend-mode: screen;
+  pointer-events: none;
+}
+
+.detail__tete {
+  position: relative;
+  max-width: var(--largeur-tete-detail);
+  margin-top: var(--e-18);
+}
+.detail__tete h2 {
+  margin: var(--e-3-5) 0 var(--e-4-5);
+  font-size: var(--t-detail);
+  line-height: 0.95;
+  letter-spacing: var(--resserre-fort);
+}
+.detail__tete p {
+  margin: 0;
+  color: var(--texte-doux);
+  font-size: var(--t-chapo);
+}
+
+.detail__grille {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--e-4-5);
+  margin-top: var(--e-15);
+}
+.detail__bloc {
+  padding: var(--e-6);
+  border: 1px solid var(--trait);
+  border-radius: var(--rayon-l);
+  background: var(--panneau);
+}
+.detail__bloc h3 {
+  margin-bottom: var(--e-2);
+  font-size: var(--t-bloc);
+  letter-spacing: -0.02em;
+}
+.detail__bloc p {
+  margin: 0;
+}
+.a-rediger {
+  font-family: var(--mono);
+  font-size: var(--t-mono-l);
+  color: var(--a-preciser);
+}
+.detail__galerie {
+  grid-column: 1 / -1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: var(--hauteur-galerie);
+  border-style: dashed;
+}
+
+.detail__nav {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--e-3);
+  margin-top: var(--e-10);
+}
+.detail__nav button {
+  min-height: var(--e-12);
+  padding: 0 var(--e-5);
+  border: 1px solid var(--trait);
+  border-radius: var(--rayon-m);
+  background: transparent;
+  color: var(--texte-doux);
+  text-align: left;
+  cursor: pointer;
+}
+.detail__nav button:hover:not(:disabled) {
+  border-color: var(--violet-clair);
+  color: var(--blanc);
+}
+.detail__nav button:disabled {
+  opacity: 0.3;
+  cursor: default;
+}
+
+@media (max-width: 720px) {
+  .detail__grille {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .detail__etoile {
+    opacity: 0.45;
+  }
+}
+
+/* Sans animation, la page apparait d'un coup. */
+@media (prefers-reduced-motion: reduce) {
+  .detail,
+  .detail.ouvert {
+    transition: none;
+  }
+}

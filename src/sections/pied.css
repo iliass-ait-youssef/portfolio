@@ -1,0 +1,14 @@
+.pied {
+  position: relative;
+  z-index: var(--plan-contact);
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: var(--e-2-5);
+  padding: var(--e-6) var(--marge) max(var(--e-6), env(safe-area-inset-bottom, 0px));
+  border-top: 1px solid var(--trait);
+  background: var(--fond-section);
+  font-family: var(--mono);
+  font-size: var(--t-mono);
+  color: var(--texte-faible);
+}

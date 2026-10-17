@@ -1,0 +1,140 @@
+/* ---- LA BASE ----------------------------------------------------------------
+   Remise a zero, corps de page, focus, et les quelques regles dont Lenis a
+   besoin. Chaque section porte ensuite sa propre feuille. */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+:root {
+  /* Les encoches et les barres des telephones : le contenu ne passe pas
+     dessous. */
+  padding-top: env(safe-area-inset-top, 0px);
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+}
+
+/* Lenis prend la main sur le defilement : le navigateur ne doit pas lisser
+   une seconde fois, ni defiler pendant que Lenis est arrete (intro, page de
+   detail ouverte). */
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+/* Un lien d'ancre s'arrete sous la barre, pas derriere elle. */
+html {
+  scroll-padding-top: calc(var(--hauteur-barre) + env(safe-area-inset-top, 0px));
+}
+
+body {
+  margin: 0;
+  background: var(--fond);
+  color: var(--texte);
+  font-family: var(--corps);
+  font-size: var(--t-corps);
+  line-height: var(--interligne);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+a {
+  color: var(--violet-clair);
+  text-decoration: none;
+}
+a:hover {
+  color: var(--blanc);
+}
+
+button {
+  font: inherit;
+}
+
+h1,
+h2,
+h3 {
+  margin: 0;
+  font-family: var(--titre);
+  font-weight: 700;
+  letter-spacing: var(--resserre);
+}
+
+/* Le focus clavier est toujours visible : une exigence, pas une option. */
+:focus-visible {
+  outline: 2px solid var(--violet);
+  outline-offset: 3px;
+  border-radius: var(--rayon-s);
+}
+
+/* Une section qui recoit le focus apres un lien d'ancre (pour que la
+   tabulation reparte de la) n'est pas une commande : pas de contour. */
+[tabindex='-1']:focus {
+  outline: none;
+}
+
+/* Present pour les lecteurs d'ecran, invisible a l'ecran. */
+.visuellement-cache {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* Le saut au contenu : hors de l'ecran, il redescend au focus par une
+   transformation (jamais en animant `top`). */
+.saut-contenu {
+  position: fixed;
+  left: var(--e-4);
+  top: var(--e-4);
+  z-index: calc(var(--plan-intro) + 1);
+  padding: var(--e-3) var(--e-4);
+  border-radius: var(--rayon-m);
+  background: var(--violet);
+  color: var(--inverse);
+  font-weight: 600;
+  transform: translateY(calc(-100% - var(--e-8)));
+  transition: transform var(--d-court) var(--courbe-entree);
+}
+.saut-contenu:focus {
+  transform: none;
+  color: var(--inverse);
+}
+
+/* Le sur-titre mono, repere des sections. */
+.surtitre {
+  font-family: var(--mono);
+  font-size: var(--t-mono);
+  letter-spacing: var(--ecarte);
+  color: var(--violet);
+}
+
+/* Ce qu'Iliass doit encore preciser : en orange, jamais devine. */
+.a-preciser {
+  font-family: var(--mono);
+  font-size: var(--t-mono);
+  color: var(--a-preciser);
+}
+
+/* Sans animation : toutes les durees tombent a presque rien. Chaque section
+   donne en plus sa version immobile et complete. */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    transition-duration: var(--d-nulle) !important;
+    animation: none !important;
+  }
+}
